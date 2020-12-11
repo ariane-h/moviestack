@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { globalStyles } from '../styles/global';
+import Card from '../shared/card';
 
 export default function Home() {
 	const [reviews, setReviews] = useState([
@@ -26,10 +27,13 @@ export default function Home() {
 
 	return (
 		<View style={globalStyles.container}>
+			<Text style={globalStyles.headerText}>Movies</Text>
 			<FlatList
 				data={reviews}
 				renderItem={({ item }) => (
-					<Text style={globalStyles.titleText}>{item.title}</Text>
+					<Card>
+						<Text style={globalStyles.titleText}>{item.title}</Text>
+					</Card>
 				)}
 			/>
 		</View>
