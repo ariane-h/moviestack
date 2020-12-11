@@ -4,6 +4,7 @@ import Home from '../screens/home';
 import Header from '../shared/header';
 import { Image } from 'react-native';
 import Hamburger from '../shared/hamburger';
+import ReviewDetails from '../screens/reviewDetails';
 
 const Stack = createStackNavigator();
 
@@ -17,6 +18,7 @@ export const HomeStack = ({ navigation }) => (
 				title: '',
 			}}
 		/>
+		<Stack.Screen name="ReviewDetails" component={ReviewDetails} />
 	</Stack.Navigator>
 );
 

@@ -1,10 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
+import Card from '../shared/card';
+import { globalStyles } from '../styles/global';
 
-export default function ReviewDetails() {
+export default function ReviewDetails({ route }) {
+	const { title, body, rating } = route.params;
+
 	return (
-		<View>
-			<Text>Review Details Stuff</Text>
+		<View style={globalStyles.container}>
+			<Card>
+				<Text>{title}</Text>
+				<Text>{body}</Text>
+				<View style={styles.rating}>
+					<Text> Rating: </Text>
+					{/* <Image source={images.ratings[rating]} /> */}
+				</View>
+			</Card>
 		</View>
 	);
 }

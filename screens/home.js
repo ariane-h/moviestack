@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { globalStyles } from '../styles/global';
 import Card from '../shared/card';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function Home() {
+export default function Home({ navigation }) {
 	const [reviews, setReviews] = useState([
 		{
 			title: 'Samurai Cop',
@@ -31,9 +32,13 @@ export default function Home() {
 			<FlatList
 				data={reviews}
 				renderItem={({ item }) => (
-					<Card>
-						<Text style={globalStyles.titleText}>{item.title}</Text>
-					</Card>
+					<TouchableOpacity
+						onPress={() => navigation.navigate('ReviewDetails', item)}
+					>
+						<Card>
+							<Text style={globalStyles.titleText}>{item.title}</Text>
+						</Card>
+					</TouchableOpacity>
 				)}
 			/>
 		</View>
