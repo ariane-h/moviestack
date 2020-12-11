@@ -1,19 +1,22 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/home';
+import Header from '../shared/header';
+import { Image } from 'react-native';
+import Hamburger from '../shared/hamburger';
 
 const Stack = createStackNavigator();
 
 export const HomeStack = ({ navigation }) => (
-	<Stack.Navigator
-		headerMode="screen"
-		screenOptions={{
-			headerStyle: {
-				backgroundColor: 'yellow',
-			},
-		}}
-	>
-		<Stack.Screen name="Home" component={Home} />
+	<Stack.Navigator headerMode="screen">
+		<Stack.Screen
+			name="Home"
+			component={Home}
+			options={{
+				headerLeft: () => <Hamburger navigation={navigation} />,
+				title: '',
+			}}
+		/>
 	</Stack.Navigator>
 );
 
