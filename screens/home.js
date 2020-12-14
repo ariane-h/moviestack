@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { globalStyles } from '../styles/global';
 import Card from '../shared/card';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function Home({ navigation }) {
 	const [reviews, setReviews] = useState([
@@ -37,6 +38,10 @@ export default function Home({ navigation }) {
 					>
 						<Card>
 							<Text style={globalStyles.titleText}>{item.title}</Text>
+							<View style={styles.ratingContainer}>
+								<MaterialIcons name="star" style={styles.icon} />
+								<Text style={globalStyles.ratingText}>{item.rating}</Text>
+							</View>
 						</Card>
 					</TouchableOpacity>
 				)}
@@ -45,4 +50,15 @@ export default function Home({ navigation }) {
 	);
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+	ratingContainer: {
+		flexDirection: 'row',
+		justifyContent: 'flex-end',
+		alignItems: 'center',
+	},
+	icon: {
+		color: '#ffc40c',
+		fontSize: 16,
+		padding: 2,
+	},
+});

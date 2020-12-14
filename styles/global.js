@@ -14,11 +14,19 @@ export const globalStyles = StyleSheet.create({
 	},
 	titleText: {
 		fontSize: 18,
-		color: '#333',
+		color: '#fff',
+		fontWeight: 'bold',
+		letterSpacing: 0.3,
+	},
+	ratingText: {
+		fontSize: 16,
+		color: '#fff',
+		fontWeight: 'bold',
 	},
 	paragraph: {
 		marginVertical: 8,
 		lineHeight: 20,
+		color: '#fff',
 	},
 	input: {
 		borderWidth: 1,
