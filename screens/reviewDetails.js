@@ -3,7 +3,6 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import Card from '../shared/card';
 import { globalStyles } from '../styles/global';
 import { MaterialIcons } from '@expo/vector-icons';
-import RatingStars from '../shared/ratingStars';
 
 export default function ReviewDetails({ route }) {
 	const { title, body, rating } = route.params;
@@ -14,7 +13,11 @@ export default function ReviewDetails({ route }) {
 				<Text style={globalStyles.titleText}>{title}</Text>
 				<Text style={globalStyles.paragraph}>{body}</Text>
 				<Text style={globalStyles.ratingText}> Rating: </Text>
-				<RatingStars rating={rating} />
+				<View style={styles.ratingContainer}>
+					{[...Array(rating)].map((value: undefined, index: number) => (
+						<MaterialIcons key={index} name="star" style={styles.icon} />
+					))}
+				</View>
 			</Card>
 		</View>
 	);
@@ -25,9 +28,9 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		paddingTop: 10,
 	},
-	// icon: {
-	// 	color: '#ffc40c',
-	// 	fontSize: 16,
-	// 	padding: 1,
-	// },
+	icon: {
+		color: '#ffc40c',
+		fontSize: 16,
+		padding: 0.5,
+	},
 });
