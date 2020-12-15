@@ -11,6 +11,7 @@ export default function Home({ navigation }) {
 
 	const addReview = (review) => {
 		review.key = Math.random().toString();
+		review.rating = parseInt(review.rating);
 		setReviews((currentReviews) => {
 			return [review, ...currentReviews];
 		});

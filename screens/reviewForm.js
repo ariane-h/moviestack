@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { globalStyles } from '../styles/global';
-import { Formik } from 'formik';
+import { Field, Formik } from 'formik';
 import { TextInput } from 'react-native-gesture-handler';
 import * as yup from 'yup';
 import FlatButton from '../shared/button';
@@ -58,7 +58,6 @@ export default function ReviewForm({ addReview }) {
 							style={globalStyles.input}
 							placeholder="Rating 1-5"
 							onChangeText={props.handleChange('rating')}
-							value={props.values.rating}
 							keyboardType="numeric"
 							onBlur={props.handleBlur('rating')}
 						/>
