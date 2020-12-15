@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, FlatList, Modal } from 'react-native';
+import {
+	StyleSheet,
+	Text,
+	View,
+	FlatList,
+	Modal,
+	Keyboard,
+	TouchableWithoutFeedback,
+} from 'react-native';
 import { globalStyles } from '../styles/global';
 import Card from '../shared/card';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -16,6 +24,12 @@ export default function Home({ navigation }) {
 			return [review, ...currentReviews];
 		});
 		setModalOpen(false);
+	};
+
+	const deleteReview = (key) => {
+		setReviews((prevReviews) => {
+			return prevReviews.filter((review) => review.key != key);
+		});
 	};
 
 	const [reviews, setReviews] = useState([
@@ -45,32 +59,40 @@ export default function Home({ navigation }) {
 	return (
 		<View style={globalStyles.container}>
 			<Modal visible={modalOpen} animationType="slide">
-				<View style={styles.modalContent}>
-					<MaterialIcons
-						name="close"
-						size={24}
-						style={{ ...styles.modalToggle, ...styles.modalClose }}
-						onPress={() => setModalOpen(false)}
-					/>
-					<ReviewForm addReview={addReview} />
-				</View>
+				<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+					<View style={styles.modalContent}>
+						<MaterialIcons
+							name="close"
+							size={24}
+							style={{ ...styles.modalToggle, ...styles.modalClose }}
+							onPress={() => setModalOpen(false)}
+						/>
+						<ReviewForm addReview={addReview} />
+					</View>
+				</TouchableWithoutFeedback>
 			</Modal>
 
 			<Text style={globalStyles.headerText}>Movies</Text>
 			<FlatList
 				data={reviews}
 				renderItem={({ item }) => (
-					<TouchableOpacity
-						onPress={() => navigation.navigate('ReviewDetails', item)}
-					>
+					<>
 						<Card>
+							<TouchableOpacity onPress={() => deleteReview(item.key)}>
+								<MaterialIcons name="close" style={styles.deleteIcon} />
+							</TouchableOpacity>
 							<Text style={globalStyles.titleText}>{item.title}</Text>
+							<TouchableOpacity
+								onPress={() => navigation.navigate('ReviewDetails', item)}
+							>
+								<Text style={globalStyles.paragraph}>read more</Text>
+							</TouchableOpacity>
 							<View style={styles.ratingContainer}>
 								<MaterialIcons name="star" style={styles.icon} />
 								<Text style={globalStyles.ratingText}>{item.rating}</Text>
 							</View>
 						</Card>
-					</TouchableOpacity>
+					</>
 				)}
 			/>
 
@@ -109,5 +131,10 @@ const styles = StyleSheet.create({
 	},
 	modalContent: {
 		flex: 1,
+	},
+	deleteIcon: {
+		fontSize: 16,
+		color: '#fff',
+		alignSelf: 'flex-end',
 	},
 });
