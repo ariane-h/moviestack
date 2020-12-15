@@ -18,7 +18,13 @@ export const HomeStack = ({ navigation }) => (
 				title: '',
 			}}
 		/>
-		<Stack.Screen name="ReviewDetails" component={ReviewDetails} />
+		<Stack.Screen
+			name="ReviewDetails"
+			component={ReviewDetails}
+			options={{
+				title: '',
+			}}
+		/>
 	</Stack.Navigator>
 );
 

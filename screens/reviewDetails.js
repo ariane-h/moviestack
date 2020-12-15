@@ -14,7 +14,7 @@ export default function ReviewDetails({ route }) {
 				<Text style={globalStyles.paragraph}>{body}</Text>
 				<Text style={globalStyles.ratingText}> Rating: </Text>
 				<View style={styles.ratingContainer}>
-					{[...Array(rating)].map((value: undefined, index: number) => (
+					{[...Array(rating)].map((value, index) => (
 						<MaterialIcons key={index} name="star" style={styles.icon} />
 					))}
 				</View>
